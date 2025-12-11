@@ -67,7 +67,7 @@ def approx_deriv(x, function):
 # approximate derivative
 def three_d_approx_deriv(x, y, function):
     #I set very small value of h
-    h = 00000000000000000000.1
+    h = 1e-8
     x1 = (function(x + h, y) - function(x, y)) / h
     y1 = (function(x, y + h) - function(x, y)) / h
     return (x1, y1)

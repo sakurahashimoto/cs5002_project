@@ -30,6 +30,16 @@ def plot(a, b, x, y, x_label, y_label, title):
     plt.ylabel(f"{y_label}")
     plt.show()
 
+def plot_nonlinear(a, b, x, y, x_label, y_label, title):
+    # get y values using found a and b
+    pred_y = a * x**2 + b * x + (-0.4)
+    sb.scatterplot(x=x, y=pred_y)
+    sb.scatterplot(x=x, y=y, s=100, color="red")
+    plt.title(f"${title}$")
+    plt.xlabel(f"{x_label}")
+    plt.ylabel(f"{y_label}")
+    plt.show()
+
 
 def scale(x, y):
     x_mean = np.mean(x)
@@ -60,9 +70,29 @@ def main_one():
         "y = a^*x + b^*",
     )
 
+#Question2
 def main_two():
+    #2.1
     x, y = load_data("data_chol_dias_pressure_non_lin.txt")
-    print(len(x))
+    #print(len(x))
+    x,y = scale(x,y) 
+  
+    #2.2
+    # 0.4 is starting a. 50 is starting b. 0.000001 is step size. 0.1 is stopping limit.
+    opt_a, opt_b = part_one.three_d_gradient_descent(
+        0.9, 150, 0.001, 0.0001, part_one.three_d_approx_deriv, partial(g2, x=x, y=y)
+    )
+    print(opt_a, opt_b)
+    plot_nonlinear(
+        opt_a,
+        opt_b,
+        x,
+        y,
+        "Total Cholesterol Level (mmol/L)",
+        "Diastolic Blood Pressure (mm Hg)",
+        "y = a^*x^2 + b^*x - 0.4",
+    )
+
     
 
 
@@ -75,6 +105,13 @@ def g(a, b, x, y):
         result += calculation
     return result
 
+def g2(a, b, x, y):
+    result = 0
+    # loop over all x and y pairs and sum up the result for g
+    for i in range(0, len(x)):
+        calculation = (((a * x[i]**2) + b*x[i] + (-0.4)) - y[i]) ** 2
+        result += calculation
+    return result
 
 if __name__ == "__main__":
     # Question one.
