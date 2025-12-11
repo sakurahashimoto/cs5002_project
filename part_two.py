@@ -31,12 +31,23 @@ def plot(a, b, x, y, x_label, y_label, title):
     plt.show()
 
 
+def scale(x, y):
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
+    std_x = np.std(x)
+    std_y = np.std(y)
+    scaled_x = (x - x_mean) / std_x
+    scaled_y = (y - y_mean) / std_y
+    return scaled_x,scaled_y
+
+
 def main():
     x, y = load_data("data_chol_dias_pressure.txt")
+    x,y = scale(x, y)
     # 1.3
     # 0.4 is starting a. 50 is starting b. 0.000001 is step size. 0.1 is stopping limit.
     opt_a, opt_b = part_one.three_d_gradient_descent(
-        0.4, 50, 0.000001, 0.1, part_one.three_d_approx_deriv, partial(g, x=x, y=y)
+        0.3, 50, 0.001, 0.001, part_one.three_d_approx_deriv, partial(g, x=x, y=y)
     )
     print(opt_a, opt_b)
     plot(
