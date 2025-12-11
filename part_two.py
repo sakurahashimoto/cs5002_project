@@ -41,7 +41,7 @@ def scale(x, y):
     return scaled_x,scaled_y
 
 
-def main():
+def main_one():
     x, y = load_data("data_chol_dias_pressure.txt")
     x,y = scale(x, y)
     # 1.3
@@ -60,6 +60,11 @@ def main():
         "y = a^*x + b^*",
     )
 
+def main_two():
+    x, y = load_data("data_chol_dias_pressure_non_lin.txt")
+    print(len(x))
+    
+
 
 # 1.2
 def g(a, b, x, y):
@@ -72,4 +77,7 @@ def g(a, b, x, y):
 
 
 if __name__ == "__main__":
-    main()
+    # Question one.
+    # main_one()
+    # Question two.
+    main_two()
