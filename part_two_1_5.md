@@ -1,0 +1,3 @@
+It was difficult to find good starting values. Part one of the project one had some minima so when we step toward the bottom we had something to follow. However, this time is straight line so there is not much gradient to follow.
+
+I scaled the data set as the instruction suggested. It does help but still easy to get no or very bad solution from gradient descent.
