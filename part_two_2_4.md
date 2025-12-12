@@ -1,3 +1,5 @@
+Since the data has a curved relationship (non-linear data), 
+I think we should use a quadratic function.
 I could implement a change to the target function g such as a second
 order polynomial rather than a first order polynomial (line) so that
 the function has a curve to better match the data. 
